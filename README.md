@@ -14,6 +14,7 @@ https://sourabhsaha94.github.io/expense-manager-application/#/
 7. Manage tagged budgets
 8. Note if you owe, or are owed, with a separate debt tag
 9. Email reminder to update expense everyday
+10. Chat bot to interact with and get reports and add expenses
 
 # Technology behind it
 1. Angular JS
