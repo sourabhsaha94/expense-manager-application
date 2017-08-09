@@ -15,9 +15,17 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                 url: '/',
                 templateUrl: 'templates/dashboard.html'
             })
-            .state('tables', {
-                url: '/tables',
-                templateUrl: 'templates/tables.html'
+            .state('expense', {
+                url: '/expense',
+                templateUrl: 'templates/expense.html'
+            })
+            .state('income', {
+                url: '/income',
+                templateUrl: 'templates/income.html'
+            })
+            .state('account', {
+                url: '/account',
+                templateUrl: 'templates/account.html'
             });
     }
 ]);

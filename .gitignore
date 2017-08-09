@@ -49,3 +49,4 @@ ui-dashboard/src/components
 
 # JetBrains
 .idea
+/.project
