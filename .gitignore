@@ -38,8 +38,6 @@ Icon
 .Spotlight-V100
 .Trashes
 
-# Dist Directory
-ui-dashboard/dist
 
 # Node modules
 ui-dashboard/node_modules
@@ -49,3 +47,7 @@ ui-dashboard/src/components
 
 # JetBrains
 .idea
+
+# Eclipse
+.project
+.settings
