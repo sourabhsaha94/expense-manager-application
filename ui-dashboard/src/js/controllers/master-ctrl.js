@@ -6,10 +6,12 @@ angular.module('RDash')
     .controller('MasterCtrl', ['$scope', '$cookieStore', '$timeout', MasterCtrl]);
 
 function MasterCtrl($scope, $cookieStore, $timeout) {
-	
+
 	$scope.dataList = [
-		{type:"query",text:"Hello"},
-		{type:"query",text:"What can I do for you?"}
+		{type:"query",text:"Hello, What can I do for you?"},
+		{type:"query",text:"1. To add an expense, type expense"},
+		{type:"query",text:"2. To add an account, type account"},
+		{type:"query",text:"3. To add an income, type income"},
 	];
 	
 	$scope.response = {};
@@ -17,7 +19,8 @@ function MasterCtrl($scope, $cookieStore, $timeout) {
 	$scope.submitQuery = function(){
 		$scope.response.type="response";
 		$scope.dataList.push($scope.response);
-		$timeout(function(){$scope.dataList.push(evaluateQuery($scope.response.text))},2000);
+		var text = $scope.response.text;
+		$timeout(function(){$scope.dataList.push(evaluateQuery(text))},2000);
 		$scope.response={};
 	};
 	
@@ -56,7 +59,18 @@ function MasterCtrl($scope, $cookieStore, $timeout) {
 
 function evaluateQuery(response){
 	var reply = {};
+	console.log(response);
 	reply.type="query";
-	reply.text="Okay";
+	var filler=["Okay! ","Perfect! ","Got it! "];
+	
+	switch(response){
+	case "expense":reply.text = "Expense has been added";
+		break;
+	case "income":reply.text = "Income has been added";
+		break;
+	case "account":reply.text = "Account has been added";
+		break;
+	}
+	
 	return reply;
 };

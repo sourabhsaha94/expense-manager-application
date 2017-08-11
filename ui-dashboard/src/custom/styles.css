@@ -4,6 +4,7 @@
 }
 .dashboard-card{
 	margin-top:10px;
+	padding: 10px;
 }
 .query{
 	flex-direction:column;
@@ -22,5 +23,8 @@
 }
 .chatbox{
 	overflow-y: scroll;
-	height:82vh;
+	height:78vh;
+}
+.searchbox{
+	padding:10px;
 }
