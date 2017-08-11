@@ -17,14 +17,14 @@
 			<a class="navbar-brand" href="#">Expense Manager</a>
 		</nav>
 	<div class="container-fluid">
-		<div class="container chatbox">
+		<div class="container">
 			<div ui-view></div>
 		</div>
 	</div>
 	<footer class="search-footer" ng-controller="DashboardCtrl">
 	<div class="container">
-	<form class="form-inline" ng-submit="submitQuery()">
-  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Message" ng-model="response.text">
+	<form class="form-inline searchbox" ng-submit="submitQuery()">
+  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Message" ng-model="response.text" autocomplete="off">
   <button type="submit" class="btn btn-primary">Send</button>
 </form>
 	</div>
