@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+.nav-background{
+	background:#3498db;
+}
+.dashboard-card{
+	margin-top:10px;
+}
+.query{
+	flex-direction:column;
+	align-content:right;
+}
+.response{
+	flex-direction:column;
+	align-content:left;
+}
+.search-footer{
+	position:absolute;
+	bottom:0;
+	width:100%;
+	line-height:60px;
+	background-color:white;
+}
+.chatbox{
+	overflow-y: scroll;
+	height:82vh;
+}
