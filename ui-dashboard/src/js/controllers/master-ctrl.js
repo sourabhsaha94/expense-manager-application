@@ -3,14 +3,29 @@
  */
 
 angular.module('RDash')
-    .controller('MasterCtrl', ['$scope', '$cookieStore', MasterCtrl]);
+    .controller('MasterCtrl', ['$scope', '$cookieStore', '$timeout', MasterCtrl]);
 
-function MasterCtrl($scope, $cookieStore) {
-    /**
+function MasterCtrl($scope, $cookieStore, $timeout) {
+	
+	$scope.dataList = [
+		{type:"query",text:"Hello"},
+		{type:"query",text:"What can I do for you?"}
+	];
+	
+	$scope.response = {};
+	
+	$scope.submitQuery = function(){
+		$scope.response.type="response";
+		$scope.dataList.push($scope.response);
+		$timeout(function(){$scope.dataList.push(evaluateQuery($scope.response.text))},2000);
+		$scope.response={};
+	};
+	
+	
+	/**
      * Sidebar Toggle & Cookie Control
-     */
-    var mobileView = 992;
-
+     *
+	var mobileView = 992;
     $scope.getWidth = function() {
         return window.innerWidth;
     };
@@ -36,4 +51,12 @@ function MasterCtrl($scope, $cookieStore) {
     window.onresize = function() {
         $scope.$apply();
     };
+    */
 }
+
+function evaluateQuery(response){
+	var reply = {};
+	reply.type="query";
+	reply.text="Okay";
+	return reply;
+};

@@ -53,3 +53,4 @@ ui-dashboard/src/components
 # Eclipse
 .project
 .settings
+/.project
