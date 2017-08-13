@@ -1,2 +1,54 @@
-<div class="row" ng-controller="AccountCtrl">
+<div class="container-fluid flex-layout" id="accountContainer">
+    <div class="card dashboard-card" ng-repeat="account in accountData">
+      <div class="card-body">
+        <h3 class="card-title">{{account.name}}</h3>
+        <div class="row" ng-if="account.type==='Credit'">
+          <div class="col-md-3 card-field">
+            <h5>Type : {{account.type}}</h5>
+          </div>
+          <div class="col-md-3 card-field">
+            <h5>Amount : $ {{getAccountsTotal(account)}}</h5>
+          </div>
+          <div class="col-md-3 card-field">
+            <h5>Limit : $ {{account.limit}}</h5>
+          </div>
+          <div class="col-md-3">
+            <a class="btn btn-primary">Edit</a>
+          </div>
+        </div>
+        <div class="row" ng-if="account.type==='Debit'">
+          <div class="col-md-4 card-field">
+            <h5>Type : {{account.type}}</h5>
+          </div>
+          <div class="col-md-4 card-field">
+            <h5>Amount : $ {{getAccountsTotal(account)}}</h5>
+          </div>
+          <div class="col-md-4">
+            <a class="btn btn-primary">Edit</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Source</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="accountDetail in getAccountsTable(account.name)">
+                  <td>{{accountDetail.type}}</td>
+                  <td>{{accountDetail.source}}</td>
+                  <td>{{accountDetail.amount}}</td>
+                  <td>{{accountDetail.date}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
