@@ -11,6 +11,10 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
 
         // Application routes
         $stateProvider
+            .state('app',{
+              abstract:true,
+              templateUrl:'templates/dashboard.html'
+            })
             .state('index', {
                 url: '/',
                 templateUrl: 'templates/dashboard.html'
