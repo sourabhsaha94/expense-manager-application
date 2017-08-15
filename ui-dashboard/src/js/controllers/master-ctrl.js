@@ -3,31 +3,14 @@
 */
 
 angular.module('RDash')
-.controller('MasterCtrl', ['$scope', '$cookieStore', '$timeout', MasterCtrl]);
+.controller('MasterCtrl', ['$scope', '$cookieStore', '$timeout','$stateParams', MasterCtrl]);
 
-function MasterCtrl($scope, $cookieStore, $timeout) {
-
-  $scope.dataList = [
-    {type:"query",text:"Hello, What can I do for you?"},
-    {type:"query",text:"1. To add an expense, type expense"},
-    {type:"query",text:"2. To add an account, type account"},
-    {type:"query",text:"3. To add an income, type income"},
-  ];
-
-  $scope.response = {};
-
-  $scope.submitQuery = function(){
-    $scope.response.type="response";
-    $scope.dataList.push($scope.response);
-    var text = $scope.response.text;
-    $timeout(function(){$scope.dataList.push(evaluateQuery(text))},2000);
-    $scope.response={};
-  };
+function MasterCtrl($scope, $cookieStore, $timeout, $stateParams) {
 
   $scope.accountData=[
-    {name:"PNC",type:"Debit",amount:"500"},
-    {name:"Discover",type:"Credit",amount:"0",limit:"2000"},
-    {name:"Capital One",type:"Credit",amount:"0",limit:"500"}
+    {id:0,name:"PNC",type:"Debit",amount:"500"},
+    {id:1,name:"Discover",type:"Credit",amount:"0",limit:"2000"},
+    {id:2,name:"Capital One",type:"Credit",amount:"0",limit:"500"}
   ];
 
   $scope.incomeData=[
@@ -47,6 +30,52 @@ function MasterCtrl($scope, $cookieStore, $timeout) {
     amounts:["30","30"]
   };
 
+  $scope.newAccountData={};
+
+  $scope.addAccount = function(){
+
+    var valid = false;
+
+    if($scope.newAccountData.type && $scope.newAccountData.name && $scope.newAccountData.amount){
+      if($scope.newAccountData.type==="Credit"){
+        if(parseInt($scope.newAccountData.limit)>0){
+          valid=true;
+        }else{
+          valid=false;
+        }
+      }else{
+        valid=true;
+      }
+    }else{
+      valid=false;
+    }
+    if(valid){
+      $scope.newAccountData.id = getRandomID(Math.random()*999+1,Math.random()*999+1);
+      $scope.accountData.push($scope.newAccountData);
+    }
+    $scope.editAccountFlag=false;
+    $scope.newAccountData={};
+    console.log($scope.accountData);
+  };
+
+  $scope.deleteAccount = function(accountId){
+      var accountInfo={};
+      for(var i=0;i<$scope.accountData.length;i++){
+        if($scope.accountData[i].id===accountId){
+          accountInfo = $scope.accountData.splice(i,1)[0];
+          break;
+        }
+      }
+      console.log($scope.accountData);
+      return accountInfo;
+  };
+
+  $scope.editAccount = function(accountId){
+    $scope.newAccountData = $scope.deleteAccount(accountId);
+    console.log($scope.newAccountData);
+    $scope.editAccountFlag=true;
+  };
+
   $scope.getAccountsTable = function(accountName){
     var results = [];
     results = $scope.incomeData.filter(function(element){
@@ -59,6 +88,16 @@ function MasterCtrl($scope, $cookieStore, $timeout) {
     });
     return results;
   };
+
+  $scope.newAccount = function(){
+    if($stateParams.addNewAccount==="true" || $scope.editAccountFlag){
+      return true;
+    }
+    else {
+      return false;
+    }
+    console.log($scope.accountData);
+  }
 
   $scope.getAccountsTotal = function(account){
     var results = $scope.getAccountsTable(account.name);
@@ -88,54 +127,9 @@ function MasterCtrl($scope, $cookieStore, $timeout) {
     }
 
     return total;
+  };
+
+  function getRandomID(start,end){
+    return Math.floor(Math.random()*end+start);
   }
-
-  /**
-  * Sidebar Toggle & Cookie Control
-  *
-  var mobileView = 992;
-  $scope.getWidth = function() {
-  return window.innerWidth;
-};
-
-$scope.$watch($scope.getWidth, function(newValue, oldValue) {
-if (newValue >= mobileView) {
-if (angular.isDefined($cookieStore.get('toggle'))) {
-$scope.toggle = ! $cookieStore.get('toggle') ? false : true;
-} else {
-$scope.toggle = true;
-}
-} else {
-$scope.toggle = false;
-}
-
-});
-
-$scope.toggleSidebar = function() {
-$scope.toggle = !$scope.toggle;
-$cookieStore.put('toggle', $scope.toggle);
-};
-
-window.onresize = function() {
-$scope.$apply();
-};
-*/
-}
-
-function evaluateQuery(response){
-  var reply = {};
-  console.log(response);
-  reply.type="query";
-  var filler=["Okay! ","Perfect! ","Got it! "];
-
-  switch(response){
-    case "expense":reply.text = "Expense has been added";
-    break;
-    case "income":reply.text = "Income has been added";
-    break;
-    case "account":reply.text = "Account has been added";
-    break;
-  }
-
-  return reply;
 };

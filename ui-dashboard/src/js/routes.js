@@ -30,6 +30,13 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             .state('account', {
                 url: '/account',
                 templateUrl: 'templates/account.html'
+            })
+            .state('account.addNewAccount',{
+              url:'/:addNewAccount',
+              templateUrl:'templates/account.html',
+              params:{
+                addNewAccount:null
+              }
             });
     }
 ]);
