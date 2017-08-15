@@ -23,6 +23,13 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                 url: '/expense',
                 templateUrl: 'templates/expense.html'
             })
+            .state('expense.addNewExpense',{
+              url:'/:addNewExpense',
+              templateUrl:'templates/expense.html',
+              params:{
+                addNewExpense:null
+              }
+            })
             .state('income', {
                 url: '/income',
                 templateUrl: 'templates/income.html'

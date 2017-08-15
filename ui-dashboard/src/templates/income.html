@@ -1,2 +1,47 @@
-<div class="row" ng-controller="IncomeCtrl">
+<div class="container-fluid flex-layout-2">
+	<div class="card dashboard-card" ng-show="newAccount()">
+    <div class="card-body">
+      <h4 class="card-title">Add new account</h3>
+      <div class="row">
+        <div class="col-md-6">
+          <label for="name">Name</label>
+          <input type="text" id="name" ng-model="newAccountData.name"/>
+        </div>
+        <div class="col-md-6">
+          <label for="amount">Amount</label>
+          <input type="text" id="amount" ng-model="newAccountData.amount"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3  form-group text-center">
+          <input name="createAccountRadioButton" type="radio" class="with-gap" id="debit-radio" ng-model="newAccountData.type" value="Debit">
+          <label for="debit-radio">Debit</label>
+        </div>
+        <div class="col-md-3  form-group text-center">
+          <input name="createAccountRadioButton" type="radio" class="with-gap" id="credit-radio" ng-model="newAccountData.type" value="Credit">
+          <label for="credit-radio">Credit</label>
+        </div>
+        <div class="col-md-6" ng-show="newAccountData.type==='Credit'">
+          <label for="limit">Limit</label>
+          <input type="text" id="limit" ng-model="newAccountData.limit"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 text-center">
+          <button class="btn btn-primary"ng-click="newAccountData={}">Clear</button>
+        </div>
+        <div class="col-md-6 text-center">
+          <button class="btn btn-primary" ng-click="addAccount()">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+	<div class="card dashboard-card" ng-repeat="income in incomeData">
+		<div class="card-body">
+			<h4 class="card-title">{{income.source}}</h4>
+			<p class="card-text">
+				$ {{income.amount}} deposited in {{income.account}} on {{income.date}}
+			</p>
+		</div>
+	</div>
 </div>
