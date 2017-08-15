@@ -1,1 +1,1 @@
-angular.module('RDash', ['ui.bootstrap', 'ui.router', 'ngCookies','luegg.directives']);
+angular.module('RDash', ['ui.bootstrap', 'ui.router', 'ngCookies','chart.js']);

@@ -1,9 +1,133 @@
-<div class="container-fluid chatbox" id="chatContainer" scroll-glue>
-	<div class="row" ng-repeat="data in dataList" ng-class="data.type">
+<div class="container-fluid" id="dashboardContainer">
+	<div class="row">
 		<div class="col-md-6">
 			<div class="card dashboard-card">
-				<div class="card-block">{{data.text}}</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-8">
+							<h4 class="card-title"><a ui-sref="account">Accounts</a></h4>
+						</div>
+						<div class="col-md-4">
+							<button class="btn btn-primary" ui-sref="account.addNewAccount({addNewAccount:'true'})">Add</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Type</th>
+										<th>Balance</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="account in accountData">
+										<td>{{account.name}}</td>
+										<td>{{account.type}}</td>
+										<td>{{account.amount}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="card dashboard-card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-10">
+							<h4 class="card-title"><a ui-sref="income">Income</a></h4>
+						</div>
+						<div class="col-md-2">
+							<h4><a href="#" class="card-title">+</a></h4>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Account</th>
+										<th>Amount</th>
+										<th>Source</th>
+										<th>Date</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="income in incomeData">
+										<td>{{income.account}}</td>
+										<td>{{income.amount}}</td>
+										<td>{{income.source}}</td>
+										<td>{{income.date}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="card dashboard-card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-10">
+							<h4 class="card-title"><a ui-sref="expense">Expenses</a></h4>
+						</div>
+						<div class="col-md-2">
+							<h4><a href="#" class="card-title">+</a></h4>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Account</th>
+										<th>Amount</th>
+										<th>Source</th>
+										<th>Date</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="expense in expenseData">
+										<td>{{expense.account}}</td>
+										<td>{{expense.amount}}</td>
+										<td>{{expense.source}}</td>
+										<td>{{expense.date}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="card dashboard-card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-10">
+							<h4 class="card-title"><a ui-sref="tags">Tags</a></h4>
+						</div>
+						<div class="col-md-2">
+							<h4><a href="#" class="card-title">+</a></h4>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<canvas id="doughnut" class="chart chart-doughnut"
+							chart-data="tags.amounts" chart-labels="tags.names">
+						</canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 </div>

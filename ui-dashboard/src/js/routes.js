@@ -11,6 +11,10 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
 
         // Application routes
         $stateProvider
+            .state('app',{
+              abstract:true,
+              templateUrl:'templates/dashboard.html'
+            })
             .state('index', {
                 url: '/',
                 templateUrl: 'templates/dashboard.html'
@@ -26,6 +30,13 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             .state('account', {
                 url: '/account',
                 templateUrl: 'templates/account.html'
+            })
+            .state('account.addNewAccount',{
+              url:'/:addNewAccount',
+              templateUrl:'templates/account.html',
+              params:{
+                addNewAccount:null
+              }
             });
     }
 ]);

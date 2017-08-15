@@ -28,3 +28,12 @@
 .searchbox{
 	padding:10px;
 }
+.flex-layout{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.card-field{
+	padding-top: 15px;
+}
