@@ -1,0 +1,85 @@
+[
+	{
+		"username": "sourabh",
+		"password": "casper123",
+		"data": [
+			{
+				"accountData": [
+					{
+						"id": 0,
+						"name": "PNC",
+						"type": "Debit",
+						"amount": "500"
+					},
+					{
+						"id": 1,
+						"name": "Discover",
+						"type": "Credit",
+						"amount": "0",
+						"": "2000"
+					},
+					{
+						"id": 2,
+						"name": "Capital One",
+						"type": "Credit",
+						"amount": "0",
+						"limit": "500"
+					}
+				]
+			},
+			{
+				"incomeData": [
+					{
+						"account": "PNC",
+						"source": "Red Hat",
+						"amount": "1800",
+						"date": "15 June 2017",
+						"type": "Income"
+					},
+					{
+						"account": "PNC",
+						"source": "Red Hat",
+						"amount": "1800",
+						"date": "15 June 2017",
+						"type": "Income"
+					},
+					{
+						"account": "PNC",
+						"source": "Red Hat",
+						"amount": "1800",
+						"date": "15 June 2017",
+						"type": "Income"
+					}
+				]
+			},
+			{
+				"expenseData": [
+					{
+						"account": "PNC",
+						"source": "Plaza",
+						"amount": "10",
+						"date": "15 June 2017",
+						"type": "Expense",
+						"tag": "Food"
+					},
+					{
+						"account": "Discover",
+						"source": "Bojangles",
+						"amount": "20",
+						"date": "15 June 2017",
+						"type": "Expense",
+						"tag": "Food"
+					},
+					{
+						"account": "Capital One",
+						"source": "Amazon",
+						"amount": "30",
+						"date": "15 June 2017",
+						"type": "Expense",
+						"tag": "Shopping"
+					}
+				]
+			}
+		]
+	}
+]

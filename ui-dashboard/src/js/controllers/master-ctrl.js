@@ -3,27 +3,35 @@
 */
 
 angular.module('RDash')
-.controller('MasterCtrl', ['$scope', '$cookieStore', '$timeout','$stateParams', MasterCtrl]);
+.controller('MasterCtrl', ['$scope', '$cookieStore', '$timeout','$stateParams','$http', MasterCtrl]);
 
-function MasterCtrl($scope, $cookieStore, $timeout, $stateParams) {
+function MasterCtrl($scope, $cookieStore, $timeout, $stateParams,$http) {
 
-  $scope.accountData=[
-    {id:0,name:"PNC",type:"Debit",amount:"500"},
-    {id:1,name:"Discover",type:"Credit",amount:"0",limit:"2000"},
-    {id:2,name:"Capital One",type:"Credit",amount:"0",limit:"500"}
-  ];
-
-  $scope.incomeData=[
-    {account:"PNC",source:"Red Hat",amount:"1800",date:"15 June 2017",type:"Income"},
-    {account:"PNC",source:"Red Hat",amount:"1800",date:"15 June 2017",type:"Income"},
-    {account:"PNC",source:"Red Hat",amount:"1800",date:"15 June 2017",type:"Income"}
-  ];
-
-  $scope.expenseData=[
-    {account:"PNC",source:"Plaza",amount:"10",date:"15 June 2017",type:"Expense",tag:"Food"},
-    {account:"Discover",source:"Bojangles",amount:"20",date:"15 June 2017",type:"Expense",tag:"Food"},
-    {account:"Capital One",source:"Amazon",amount:"30",date:"15 June 2017",type:"Expense",tag:"Shopping"}
-  ];
+	$http.get('database.json').then(function(response){
+		$scope.user=response.data[0];
+		$scope.accountData=$scope.user.data[0].accountData;
+		$scope.incomeData=$scope.user.data[1].incomeData;
+		$scope.expenseData=$scope.user.data[2].expenseData;
+		console.log($scope.user);
+	});
+	
+//  $scope.accountData=[
+//    {id:0,name:"PNC",type:"Debit",amount:"500"},
+//    {id:1,name:"Discover",type:"Credit",amount:"0",limit:"2000"},
+//    {id:2,name:"Capital One",type:"Credit",amount:"0",limit:"500"}
+//  ];
+//
+//  $scope.incomeData=[
+//    {account:"PNC",source:"Red Hat",amount:"1800",date:"15 June 2017",type:"Income"},
+//    {account:"PNC",source:"Red Hat",amount:"1800",date:"15 June 2017",type:"Income"},
+//    {account:"PNC",source:"Red Hat",amount:"1800",date:"15 June 2017",type:"Income"}
+//  ];
+//
+//  $scope.expenseData=[
+//    {account:"PNC",source:"Plaza",amount:"10",date:"15 June 2017",type:"Expense",tag:"Food"},
+//    {account:"Discover",source:"Bojangles",amount:"20",date:"15 June 2017",type:"Expense",tag:"Food"},
+//    {account:"Capital One",source:"Amazon",amount:"30",date:"15 June 2017",type:"Expense",tag:"Shopping"}
+//  ];
 
   $scope.tags = {
     names:["Food","Shopping"],
