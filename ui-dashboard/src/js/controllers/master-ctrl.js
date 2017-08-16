@@ -94,13 +94,7 @@ function MasterCtrl($scope, $cookieStore, $timeout, $stateParams, $http) {
 		return results;
 	}
 
-	$scope.newExpense = function() {
-		if ($stateParams.addNewExpense === "true" || $scope.editExpenseFlag) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+
 
 	$scope.getAccountsTotal = function(account) {
 		var results = $scope.getAccountsTable(account.name);
@@ -132,6 +126,13 @@ function MasterCtrl($scope, $cookieStore, $timeout, $stateParams, $http) {
 		return total;
 	};
 
+	$scope.newExpense = function() {
+		if ($stateParams.addNewExpense === "true" || $scope.editExpenseFlag) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	$scope.addExpense = function() {
 
