@@ -17,7 +17,7 @@ function MasterCtrl($scope, $cookieStore, $timeout, $stateParams, $http) {
 //		$scope.tags = $scope.user.data[3].tags;
 		console.log($scope.user);
 	});
-	
+
 	$scope.tags = {
 		names : [ "Food", "Shopping" ],
 		amounts : [ "30", "30" ]
@@ -85,7 +85,7 @@ function MasterCtrl($scope, $cookieStore, $timeout, $stateParams, $http) {
 		});
 		return results;
 	};
-	
+
 	$scope.getAccountNames = function(){
 		var results=[];
 		$scope.accountData.forEach(function(element){
@@ -94,13 +94,7 @@ function MasterCtrl($scope, $cookieStore, $timeout, $stateParams, $http) {
 		return results;
 	}
 
-	$scope.newExpense = function() {
-		if ($stateParams.addNewExpense === "true" || $scope.editExpenseFlag) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+
 
 	$scope.getAccountsTotal = function(account) {
 		var results = $scope.getAccountsTable(account.name);
@@ -132,7 +126,14 @@ function MasterCtrl($scope, $cookieStore, $timeout, $stateParams, $http) {
 		return total;
 	};
 
-	
+	$scope.newExpense = function() {
+		if ($stateParams.addNewExpense === "true" || $scope.editExpenseFlag) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	$scope.addExpense = function() {
 
 		var valid = false;
@@ -168,6 +169,51 @@ function MasterCtrl($scope, $cookieStore, $timeout, $stateParams, $http) {
 	$scope.editExpense = function(expenseId) {
 		$scope.newExpenseData = $scope.deleteExpense(expenseId);
 		$scope.editExpenseFlag = true;
+	};
+
+	$scope.newIncome = function() {
+		if ($stateParams.addNewIncome === "true" || $scope.editIncomeFlag) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	$scope.addIncome = function() {
+
+		var valid = false;
+
+		if ($scope.newIncomeData.source && $scope.newIncomeData.account
+				&& $scope.newIncomeData.amount && $scope.newIncomeData.date) {
+			valid = true;
+		} else {
+			valid = false;
+		}
+		if (valid) {
+			$scope.newIncomeData.id = getRandomID(Math.random() * 999 + 1,
+					Math.random() * 999 + 1);
+			$scope.newIncomeData.type="Income";
+			$scope.incomeData.push($scope.newIncomeData);
+		}
+		$scope.editIncomeFlag = false;
+		console.log(valid);
+		$scope.newIncomeData = {};
+	};
+
+	$scope.deleteIncome = function(incomeId) {
+		var incomeInfo = {};
+		for (var i = 0; i < $scope.incomeData.length; i++) {
+			if ($scope.incomeData[i].id === incomeId) {
+				incomeInfo = $scope.incomeData.splice(i, 1)[0];
+				break;
+			}
+		}
+		return incomeInfo;
+	};
+
+	$scope.editIncome = function(incomeId) {
+		$scope.newIncomeData = $scope.deleteIncome(incomeId);
+		$scope.editIncomeFlag = true;
 	};
 
 	function getRandomID(start, end) {

@@ -47,5 +47,13 @@
 				$ {{expense.amount}} spent on {{expense.tag}} from {{expense.account}} on {{expense.date}}
 			</p>
 		</div>
+		<div class="row">
+			<div class="col-md-6 text-center">
+				<button class="btn btn-primary" ng-click="editExpense(expense.id)">Edit</button>
+			</div>
+			<div class="col-md-6 text-center">
+				<button class="btn btn-danger" ng-click="deleteExpense(expense.id)">Delete</button>
+			</div>
+		</div>
 	</div>
 </div>

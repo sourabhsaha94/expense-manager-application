@@ -34,6 +34,13 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                 url: '/income',
                 templateUrl: 'templates/income.html'
             })
+            .state('income.addNewIncome',{
+              url:'/:addNewIncome',
+              templateUrl:'templates/income.html',
+              params:{
+                addNewIncome:null
+              }
+            })
             .state('account', {
                 url: '/account',
                 templateUrl: 'templates/account.html'
