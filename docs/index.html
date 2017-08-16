@@ -2,8 +2,8 @@
 <html lang="en" ng-app="RDash">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Expense Manager</title>
   <!-- STYLES -->
   <link rel="stylesheet" href="lib/css/main.min.css"/>
@@ -14,20 +14,12 @@
 </head>
 <body ng-controller="MasterCtrl">
 <nav class="navbar navbar-light nav-background">
-			<a class="navbar-brand" href="#">Expense Manager</a>
+			<a class="navbar-brand" ui-sref="index">Expense Manager</a>
 		</nav>
 	<div class="container-fluid">
-		<div class="container">
+		
 			<div ui-view></div>
-		</div>
+	
 	</div>
-	<footer class="search-footer" ng-controller="DashboardCtrl">
-	<div class="container">
-	<form class="form-inline searchbox" ng-submit="submitQuery()">
-  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Message" ng-model="response.text" autocomplete="off">
-  <button type="submit" class="btn btn-primary">Send</button>
-</form>
-	</div>
-	</footer>
 </body>
 </html>

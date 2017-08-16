@@ -1,2 +1,52 @@
-<div class="row" ng-controller="IncomeCtrl">
+<div class="container-fluid flex-layout-2">
+	<div class="card dashboard-card" ng-show="newIncome()">
+    <div class="card-body">
+      <h4 class="card-title">Add new income</h4>
+      <div class="row">
+        <div class="col-md-6">
+          <label for="source">Source</label>
+          <input type="text" id="source" ng-model="newIncomeData.source">
+        </div>
+        <div class="col-md-6">
+          <label for="amount">Amount</label>
+          <input type="text" id="amount" ng-model="newIncomeData.amount">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label for="account">Account</label>
+          <select class="form-control" id="account" ng-model="newIncomeData.account" ng-options="account for account in getAccountNames()">
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="date">Date</label>
+          <input type="text" id="date" ng-model="newIncomeData.date">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 text-center">
+          <button class="btn btn-primary" ng-click="newIncomeData={}">Clear</button>
+        </div>
+        <div class="col-md-6 text-center">
+          <button class="btn btn-primary" ng-click="addIncome()">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+	<div class="card dashboard-card" ng-repeat="income in incomeData">
+		<div class="card-body">
+			<h4 class="card-title">{{income.source}}</h4>
+			<p class="card-text">
+				$ {{income.amount}} added to {{income.account}} on {{income.date}}
+			</p>
+			<div class="row">
+				<div class="col-md-6 text-center">
+					<button class="btn btn-primary" ng-click="editIncome(income.id)">Edit</button>
+				</div>
+				<div class="col-md-6 text-center">
+					<button class="btn btn-danger" ng-click="deleteIncome(income.id)">Delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
